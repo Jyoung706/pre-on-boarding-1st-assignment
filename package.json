@@ -9,7 +9,7 @@
     "nodemon": "^2.0.20"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "nodemon server.js"
   },
   "name": "pre-on-boarding-1st-assignment",
   "description": "프리온보딩 첫번째 과제",
