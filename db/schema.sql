@@ -25,7 +25,7 @@ CREATE TABLE `record_data` (
   KEY `record_type_id` (`record_type_id`),
   CONSTRAINT `record_data_ibfk_1` FOREIGN KEY (`record_id`) REFERENCES `records` (`id`) ON DELETE CASCADE,
   CONSTRAINT `record_data_ibfk_2` FOREIGN KEY (`record_type_id`) REFERENCES `record_types` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,9 +36,9 @@ CREATE TABLE `record_data` (
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `record_types` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `type` varchar(30) NOT NULL,
+  `type` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -55,7 +55,7 @@ CREATE TABLE `records` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `records_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -78,18 +78,18 @@ CREATE TABLE `schema_migrations` (
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `users` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(10) NOT NULL,
-  `birthday` varchar(20) NOT NULL,
+  `name` varchar(10) COLLATE utf8mb4_general_ci NOT NULL,
+  `birthday` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
   `height` int NOT NULL,
-  `mobile_number` varchar(20) NOT NULL,
+  `mobile_number` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `is_active` tinyint NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping routines for database '1st_pre_on_boarding'
+-- Dumping routines for database 'onboarding'
 --
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

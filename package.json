@@ -5,7 +5,6 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.1",
     "morgan": "^1.10.0",
-    "mysql": "^2.18.1",
     "mysql2": "^2.3.3",
     "nodemon": "^2.0.20",
     "typeorm": "^0.3.10"
@@ -17,7 +16,6 @@
   "description": "프리온보딩 첫번째 과제",
   "version": "1.0.0",
   "main": "app.js",
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/J-EUM/pre-on-boarding-1st-assignment.git"
