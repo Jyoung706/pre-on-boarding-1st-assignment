@@ -2,13 +2,13 @@ const userDao = require("../models/user_dao")
 
 const signUp = async (name, birthday, height, mobile_number) => {
     
-    const userCheck = await userDao.userCheck(mobile_number);
-
-    if(!userCheck){
+    const userCheck = await userDao.userCheck(name, birthday, height, mobile_number);
+    
+    if(userCheck){
         const err = new Error('EXIST_USER')
         err.statusCode = 409 
         throw err
-    }
+    };
 
     const validateMobileNumber = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
     if(!validateMobileNumber.test(mobile_number)) {

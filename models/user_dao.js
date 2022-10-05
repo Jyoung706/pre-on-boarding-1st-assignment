@@ -6,9 +6,9 @@ const errorHandler = () => {
     throw err;
 };
 
-const userCheck = async (mobile_number) => {
+const userCheck = async (name, birthday, height, mobile_number) => {
     try {
-        return await myDataSource.query(`
+        return await pool.query(`
         SELECT EXISTS
         (SELECT mobile_number FROM users
         WHERE mobile_number = "${mobile_number}");
@@ -20,7 +20,7 @@ const userCheck = async (mobile_number) => {
 
 const createUser = async (name, birthday, height, mobile_number) => {
     try{
-        return await myDataSource.query(`    
+        return await pool.query(`    
             INSERT INTO users (
                 name,
                 birthday,
