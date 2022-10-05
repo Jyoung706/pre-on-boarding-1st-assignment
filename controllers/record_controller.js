@@ -107,4 +107,5 @@ const recordDataController = async (req, res) => {
   }
 };
 
-module.exports = { recordDataController };
+const recordDeleteController = async (req, res) => {};
+module.exports = { recordDataController, recordDeleteController };
