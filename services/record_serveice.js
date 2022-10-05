@@ -5,10 +5,10 @@ const recordDataService = async (id, weight, typeData) => {
   const [recordId] = await recordDao.getRecordIdByUserId(id);
   if (typeData.length === 1) {
     typeData = typeData[0];
-    await recordDao.createRecordData(recordId.id, typeData);
+    await recordDao.createRecordData(recordId[0].id, typeData);
   } else {
     for (let i in typeData) {
-      await recordDao.createRecordData(recordId.id, typeData[i]);
+      await recordDao.createRecordData(recordId[0].id, typeData[i]);
     }
   }
 };

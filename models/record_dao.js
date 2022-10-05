@@ -1,7 +1,7 @@
-const { myDataSource } = require("./common");
+const pool = require("./common");
 
 const createRecord = async (id, weight) => {
-  await myDataSource.query(
+  await pool.query(
     `INSERT INTO records (user_id,weight) VALUES (?,?);
     `,
     [id, weight]
@@ -9,7 +9,7 @@ const createRecord = async (id, weight) => {
 };
 
 const getRecordIdByUserId = async (id) => {
-  return await myDataSource.query(
+  return await pool.query(
     `SELECT id FROM records 
      WHERE user_id = ?
      ORDER BY created_at DESC LIMIT 1;
@@ -19,7 +19,7 @@ const getRecordIdByUserId = async (id) => {
 };
 
 const createRecordData = async (recordId, typeData) => {
-  await myDataSource.query(
+  await pool.query(
     `INSERT INTO record_data (record_id,record_type_id,data) 
      VALUES (?,?,?);
     `,
