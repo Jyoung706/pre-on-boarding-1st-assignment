@@ -2,9 +2,11 @@ const express = require("express");
 const recordController = require("../controllers/record_controller");
 const errorHandler = require("../middlewares/error_handler");
 
-const recordRouter = express.Router();
+const router = express.Router();
 
-recordRouter.get("/:recordId", errorHandler(recordController.getRecordWithData));
+router.get("/:recordId", errorHandler(recordController.getRecordWithData));
 
+router.post("", recordController.recordDataController);
+router.delete("/:id", recordController.recordDeleteController);
 
-module.exports = recordRouter;
+module.exports = router;
