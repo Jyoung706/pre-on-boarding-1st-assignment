@@ -1,12 +1,12 @@
-const mysql = require('mysql2/promise')
+const mysql = require("mysql2/promise");
 
 const pool = mysql.createPool({
-  host: process.env.TYPEORM_HOST,
-  port: process.env.TYPEORM_PORT,
-  user:  process.env.TYPEORM_USERNAME,
-  password: process.env.TYPEORM_PASSWORD,
-  database: process.env.TYPEORM_DATABASE,
-  connectionLimit: 10
-})
+  host: process.env.MYSQL_HOST,
+  port: process.env.MYSQL_PORT,
+  user: process.env.MYSQL_USERNAME,
+  password: process.env.MYSQL_PASSWORD,
+  database: process.env.MYSQL_DATABASE,
+  connectionLimit: 10,
+});
 
-module.exports = pool
+module.exports = pool;

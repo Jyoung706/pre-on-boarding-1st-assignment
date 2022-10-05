@@ -1,1 +1,1 @@
-const { myDataSource } = require("./common");
+const pool = require("./common");
