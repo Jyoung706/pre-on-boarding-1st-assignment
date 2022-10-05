@@ -101,7 +101,7 @@ const recordDataController = async (req, res) => {
   } catch (err) {
     await conn.rollback();
     console.log(err);
-    res.status(err.statusCode).json(err.message);
+    res.status(400 || err.statusCode).json(err.message);
   } finally {
     conn.release();
   }
