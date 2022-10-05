@@ -41,7 +41,6 @@ const getRecordWithData = async (recordId) => {
         WHERE records.id = ?
         GROUP BY records.id
     ;`, [recordId]);
-    console.log("model2");
     return result
 };
 
