@@ -35,7 +35,14 @@ const createUser = async (name, birthday, height, mobile_number) => {
   }
 };
 
+const getMemberList = async() => {
+    return await pool.query(
+        `SELECT * FROM users`
+    )
+};
+
 module.exports = {
   createUser,
   userCheck,
+  getMemberList
 };

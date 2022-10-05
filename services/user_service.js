@@ -34,6 +34,14 @@ const signUp = async (name, birthday, height, mobile_number) => {
     return await userDao.createUser(name, birthday, height, mobile_number)
 };
 
+
+const getMemberList = async() => {
+    const [ member ] = await userDao.getMemberList();
+    return member;
+}
+
+
 module.exports = {
-    signUp
+    signUp,
+    getMemberList
 };

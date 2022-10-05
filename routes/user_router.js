@@ -4,4 +4,6 @@ const router = express.Router();
 
 router.post("/sign-up", userController.signUp);
 
+router.get("/members", userController.getMemberList);
+
 module.exports = router;

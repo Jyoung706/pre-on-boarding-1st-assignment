@@ -9,7 +9,7 @@ const signUp = async (req, res) => {
     const { name, birthday, height, mobile_number } = req.body;
 
     if (!name || !birthday || !height || !mobile_number) {
-      return res.status(404).json({ message: "KEY_ERROR" });
+        return res.status(404).json({ message: "KEY_ERROR" });
     }
 
     await userService.signUp(name, birthday, height, mobile_number);
@@ -19,6 +19,12 @@ const signUp = async (req, res) => {
   }
 };
 
+const getMemberList = async (_, res) => {
+    const member = await userService.getMemberList();
+    res.status(201).json({ member });
+};
+
 module.exports = {
   signUp,
+  getMemberList
 };
