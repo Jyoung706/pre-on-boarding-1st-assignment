@@ -24,7 +24,7 @@ const signUp = async (name, birthday, height, mobile_number) => {
         throw err
     }
 
-    const validateBirthDay = /([0-9]{2}(0[1-9]|1[0-2])(0[1-9]|[1,2][0-9]|3[0,1]))/;
+    const validateBirthDay = /^(19[0-9][0-9]|20\d{2})-(0[0-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
     if(!validateBirthDay.test(birthday)) {
         const err = new Error('INVALID_BIRTHDAY')
         err.statusCode = 409
