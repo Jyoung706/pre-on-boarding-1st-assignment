@@ -1,5 +1,20 @@
 const pool = require("./common");
 
+const checkExistRecord = async (recordId) => {
+    const [[isExists]] = await pool.query(`
+    SELECT EXISTS (SELECT 1 FROM records WHERE id = "${recordId}");`);
+    return Object.values(isExists)[0]
+}
+
+const checkActiveRecord = async (recordId) => {
+    const [[isActive]] = await pool.query(`
+        SELECT users.is_active 
+        FROM users
+        JOIN records ON users.id = records.user_id
+        WHERE records.id=?;`, [recordId]);
+    return isActive.is_active
+};
+
 const getRecordWithData = async (recordId) => {
     const [[result]] = await pool.query(`
         SELECT
@@ -31,5 +46,7 @@ const getRecordWithData = async (recordId) => {
 };
 
 module.exports = { 
-    getRecordWithData
+    getRecordWithData,
+    checkActiveRecord,
+    checkExistRecord
 }
