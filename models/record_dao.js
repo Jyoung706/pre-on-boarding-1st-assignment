@@ -1,3 +1,5 @@
+const pool = require("./common");
+
 const createRecord = async (id, weight, conn) => {
   await conn.query(
     `INSERT INTO records (user_id,weight) VALUES (?,?);
