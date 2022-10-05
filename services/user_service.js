@@ -34,6 +34,19 @@ const signUp = async (name, birthday, height, mobile_number) => {
     return await userDao.createUser(name, birthday, height, mobile_number)
 };
 
+const deleteUser = async(user_id , is_active) => {
+    
+    const verifiedUser = await userDao.verifiedUser(user_id , is_active);
+    
+    
+    if(!verifiedUser){
+        const err = new Error('NOT_EXIST_USER')
+        err.statusCode = 409 
+        throw err
+    };
+}
+
 module.exports = {
-    signUp
-};
+    signUp,
+    deleteUser
+}

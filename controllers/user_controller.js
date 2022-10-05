@@ -20,6 +20,22 @@ const signUp = async (req, res) => {
     }
 };
 
+const deleteUser = async (req, res) => {
+    try {
+
+        const { user_id , is_active } = req.body;
+        if (!user_id || !is_active ) {
+            return res.status(404).json({ message : "KEY_ERROR" });
+        }
+
+        await userService.deleteUser(user_id , is_active );
+        return res.status(200).json({ message : "DELETE_USER" });
+    } catch (err) {
+        errorhandler(err, res);
+    }
+};
+
 module.exports = {
-	signUp
+	signUp,
+    deleteUser
 }

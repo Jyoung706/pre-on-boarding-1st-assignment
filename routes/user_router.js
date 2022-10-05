@@ -3,7 +3,7 @@ const userController = require("../controllers/user_controller")
 const router = express.Router();
 
 router.post('/sign-up', userController.signUp);
-
+router.patch('/delete', userController.deleteUser);
 
 module.exports = {
     router
