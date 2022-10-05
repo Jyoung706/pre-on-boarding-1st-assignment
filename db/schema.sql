@@ -80,7 +80,7 @@ CREATE TABLE `users` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(10) NOT NULL,
   `birthday` varchar(20) NOT NULL,
-  `height` int NOT NULL,
+  `height` float NOT NULL,
   `mobile_number` varchar(20) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `is_active` tinyint NOT NULL DEFAULT '1',

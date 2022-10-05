@@ -1,21 +1,10 @@
-const { DataSource } = require("typeorm");
+const mysql = require("mysql2");
 
-const myDataSource = new DataSource({
-  type: process.env.TYPEORM_CONNECTION,
-  host: process.env.TYPEORM_HOST,
-  port: process.env.TYPEORM_PORT,
-  username: process.env.TYPEORM_USERNAME,
-  password: process.env.TYPEORM_PASSWORD,
-  database: process.env.TYPEORM_DATABASE,
+const myDataSource = mysql.createConnection({
+  host: process.env.MYSQL_HOST,
+  user: process.env.MYSQL_USERNAME,
+  password: process.env.MYSQL_PASSWORD,
+  database: process.env.MYSQL_DATABASE,
 });
-
-myDataSource
-  .initialize()
-  .then(() => {
-    console.log("Data Source has been initialized!");
-  })
-  .catch((err) => {
-    console.error("Database initiate fail", err);
-  });
 
 module.exports = { myDataSource };
