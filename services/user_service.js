@@ -4,7 +4,7 @@ const signUp = async (name, birthday, height, mobile_number) => {
     
     const userCheck = await userDao.userCheck(name, birthday, height, mobile_number);
     
-    if(userCheck){
+    if(!userCheck){
         const err = new Error('EXIST_USER')
         err.statusCode = 409 
         throw err
