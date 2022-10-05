@@ -1,17 +1,5 @@
 const pool = require("./common");
 
-const getMemberList = async() => {
-    return await pool.query(
-        `SELECT * FROM users`
-    )
-}
-
-module.exports = {
-    getMemberList
-}
-
-
-
 const errorHandler = () => {
   const err = new Error("INVALID_DATA_INPUT");
   err.statusCode = 500;
@@ -47,7 +35,14 @@ const createUser = async (name, birthday, height, mobile_number) => {
   }
 };
 
+const getMemberList = async() => {
+    return await pool.query(
+        `SELECT * FROM users`
+    )
+};
+
 module.exports = {
   createUser,
   userCheck,
+  getMemberList
 };
