@@ -107,5 +107,19 @@ const recordDataController = async (req, res) => {
   }
 };
 
-const recordDeleteController = async (req, res) => {};
+const recordDeleteController = async (req, res) => {
+  const { id } = req.params;
+  const conn = await pool.getConnection(async (conn) => conn);
+  try {
+    await conn.beginTransaction();
+    await recordService.recordDeleteService(id, conn);
+    await conn.commit();
+    res.status(204).json();
+  } catch (err) {
+    console.log(err);
+    await conn.rollback();
+    res.status(400 || err.statusCode).json(err.message);
+  }
+};
+
 module.exports = { recordDataController, recordDeleteController };

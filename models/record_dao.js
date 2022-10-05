@@ -36,8 +36,31 @@ const createRecordData = async (recordId, typeData, conn) => {
   );
 };
 
+const getRecordByRecordId = async (id, conn) => {
+  return await conn.query(
+    `SELECT id FROM records WHERE id = ?;
+    `,
+    [id],
+    (err) => {
+      throw err;
+    }
+  );
+};
+
+const deleteRecord = async (id, conn) => {
+  await conn.query(
+    `DELETE FROM records WHERE id = ?;
+  `,
+    [id],
+    (err) => {
+      throw err;
+    }
+  );
+};
 module.exports = {
   createRecord,
   getRecordIdByUserId,
   createRecordData,
+  getRecordByRecordId,
+  deleteRecord,
 };

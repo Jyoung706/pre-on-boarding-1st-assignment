@@ -13,4 +13,13 @@ const recordDataService = async (id, weight, typeData, conn) => {
   }
 };
 
-module.exports = { recordDataService };
+const recordDeleteService = async (id, conn) => {
+  const [checkRecord] = await recordDao.getRecordByRecordId(id, conn);
+  if (!checkRecord.length) {
+    const err = new Error("Not exist record");
+    err.statusCode = 400;
+    throw err;
+  }
+  await recordDao.deleteRecord(id, conn);
+};
+module.exports = { recordDataService, recordDeleteService };
