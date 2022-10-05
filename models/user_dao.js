@@ -1,4 +1,4 @@
-const { myDataSource } = require("./common");
+const pool = require("./common");
 
 const errorHandler = () => {
     const err = new Error('INVALID_DATA_INPUT');
@@ -34,9 +34,8 @@ const createUser = async (name, birthday, height, mobile_number) => {
     }
 };
 
-
-
 module.exports = {
     createUser,
     userCheck
 }
+
