@@ -6,6 +6,18 @@ const errorHandler = () => {
     throw err;
 };
 
+const userCheck = async (mobile_number) => {
+    try {
+        return await myDataSource.query(`
+        SELECT EXISTS
+        (SELECT mobile_number FROM users
+        WHERE mobile_number = "${mobile_number}");
+        `)
+    } catch (err) {
+        errorHandler();
+    }
+};
+
 const createUser = async (name, birthday, height, mobile_number) => {
     try{
         return await myDataSource.query(`    
@@ -22,17 +34,7 @@ const createUser = async (name, birthday, height, mobile_number) => {
     }
 };
 
-const userCheck = async (mobile_number) => {
-    try {
-        return await myDataSource.query(`
-        SELECT EXISTS
-        (SELECT mobile_number FROM users
-        WHERE mobile_number = "${mobile_number}");
-        `)
-    } catch (err) {
-        errorHandler();
-    }
-};
+
 
 module.exports = {
     createUser,
