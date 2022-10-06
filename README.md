@@ -1,15 +1,22 @@
 # 바딧 - 회원관리 및 운동 능력 기록 앱 만들기
-
+![JavaScript Badge](https://img.shields.io/badge/Javascript-F7DF1E?style=for-the-badge&logo=Javascript&logoColor=white)&nbsp;
+<img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=Node.js&logoColor=white"/>&nbsp;
+<img src="https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=Express&logoColor=white"/>&nbsp;
+<img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=MySQL&logoColor=white"/>&nbsp;
+## 개요
+원티드 프리온보딩 백엔드 코스 1차 과제 입니다. Node.js와 RDB를 이용하여 회원관리 및 운동 능력 기록 앱을 만들었습니다.
+- 개발기간: 2022.10.04 - 2022.10.07
+- 개발인원: 김윤희, 박정용, 오인환, 음정민(PM), 전준영 (6명)
 
 
 
 ## 프로젝트 실행 방법
 
-- 사전에 node와 mysql이 설치되어있어야 합니다.
+- 사전에 Git, node, MySQL이 설치되어있어야 합니다.
 
 ```shell
 # 레포지토리 클론
-$ git clone 
+$ git clone https://github.com/J-EUM/pre-on-boarding-1st-assignment.git
 
 # 접속
 $ cd pre-on-boarding-1st-assignment
@@ -18,7 +25,7 @@ $ cd pre-on-boarding-1st-assignment
 $ npm install
 
 # 데이터베이스 생성
-mysql> create database 데이터베이스이름 character set utf8mb4 collate utf8mb4_general_ci; 
+mysql> create database 데이터베이스명 character set utf8mb4 collate utf8mb4_general_ci; 
 
 # .env파일 만들기(데이터베이스와 연결)
 MYSQL_HOST = ip
@@ -38,6 +45,11 @@ $ node server.js
 
 
 ## 프로젝트 구조
+### DB모델링
+![image](https://user-images.githubusercontent.com/97498663/194228536-bf8dac2d-612b-411b-b32b-e27f66263077.png)
+
+
+
 
 
 ## 구현 기능에 대한 소개
