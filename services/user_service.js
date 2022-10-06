@@ -38,26 +38,21 @@ const signUp = async (name, birthday, height, mobile_number) => {
     return;
 };
 
-const deleteUser = async(user_id , is_active) => {
-    
-    const verifiedUser = await userDao.verifiedUser(user_id , is_active);
-    
-    if(verifiedUser){
-        const err = new Error('NOT_EXIST_USER')
-        err.statusCode = 409 
-        throw err
-    };
-}
-
 const getMemberList = async() => {
     const [ member ] = await userDao.getMemberList();
     return member;
 };
 
+const deleteUser = async (id) => {
+   
+    const selectUser = await userDao.deleteUser(id)
+    return selectUser;
+    }
 
 module.exports = {
     signUp,
     checkVaildate,
     getMemberList,
     deleteUser
+    
 };

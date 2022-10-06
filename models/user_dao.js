@@ -30,18 +30,14 @@ const createUser = async (name, birthday, height, mobile_number) => {
     }
 };
 
-const deleteUser = async (user_id, is_active) => {
-    return await pool.query(`
-    UPDATE users SET is_active = ${is_active} WHERE id = ${user_id} ;`,
-    [user_id, is_active]);
+const deleteUser = async (id) => {
+    const [selectUser] = await pool.query(`
+    UPDATE users SET is_active = 0 WHERE id = ?;`,
+    [id]);
+    return selectUser;
+   
+} 
 
-}
-
-const verifiedUser= async(user_id, is_active) => {
-    return await pool.query(`
-    SELECT * FROM users WHERE id = ${user_id}
-    ;`,[user_id, is_active]);
-}
 
 const getMemberList = async() => {
     return await pool.query(
@@ -54,5 +50,4 @@ module.exports = {
   userCheck,
   getMemberList,
   deleteUser,
-  verifiedUser
 };
