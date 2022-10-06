@@ -57,9 +57,18 @@ const selectDetailUser = async (req, res) => {
     
 }
 
+const editUserProfile = async (req, res) => {
+    const { userId } = req.params;
+    const { name, birthday, height, mobileNumber } = req.body;
+
+    await userService.editUserProfile(userId, name, birthday, height, mobileNumber);
+    res.status(200).json({ message: "USER_EDITED" })
+};
+
 module.exports = {
 	signUp,
     deleteUser,
     getMemberList,
-    selectDetailUser
+    selectDetailUser,
+    editUserProfile
 };

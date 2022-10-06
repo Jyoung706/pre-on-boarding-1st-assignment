@@ -1,10 +1,10 @@
 module.exports = class ErrorCreator extends Error {
-    constructor(message, status) {
+    constructor(message, statusCode) {
         super(message);
         this.name = this.constructor.name;
 
         Error.captureStackTrace(this, this.constructor);
 
-        this.status = status || 500;
+        this.statusCode = statusCode || 500;
     }
 };
