@@ -8,16 +8,20 @@ const signUp = async (req, res) => {
   try {
     const { name, birthday, height, mobile_number } = req.body;
 
-    if (!name || !birthday || !height || !mobile_number) {
-        return res.status(404).json({ message: "KEY_ERROR" });
-    }
+        if (!name || !birthday || !height || !mobile_number ) {
+            return res.status(404).json({ message : "KEY_ERROR" });
+        }
 
-    await userService.signUp(name, birthday, height, mobile_number);
-    return res.status(201).json({ message: "USER_CREATED" });
-  } catch (err) {
-    errorhandler(err, res);
+        await userService.signUp(name, birthday, height, mobile_number);
+        await userService.checkVaildate(name, birthday, height, mobile_number);
+        return res.status(201).json({ message : "USER_CREATED" });
+    
+    } catch (err) {
+        errorhandler(err, res);
+    }
+  
   }
-};
+
 
 const getMemberList = async (_, res) => {
     const member = await userService.getMemberList();

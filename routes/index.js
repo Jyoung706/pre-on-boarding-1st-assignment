@@ -6,5 +6,4 @@ const recordRouter = require("./record_router");
 router.use("/users", userRouter);
 router.use("/records", recordRouter);
 
-
 module.exports = router;
