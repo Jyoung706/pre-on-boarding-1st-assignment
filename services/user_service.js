@@ -27,7 +27,7 @@ const checkVaildate = async (name, birthday, height, mobile_number) => {
 
 const signUp = async (name, birthday, height, mobile_number) => {
     const user = await userDao.userCheck(mobile_number)
-    console.log(user);
+    
     if(user) { 
         const err = new Error('EXIST USER')
         err.statusCode = 409
