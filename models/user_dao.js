@@ -1,9 +1,9 @@
 const pool = require("./common");
 
 const errorHandler = () => {
-    const err = new Error('INVALID_DATA_INPUT');
-    err.statusCode = 500; 
-    throw err;
+  const err = new Error("INVALID_DATA_INPUT");
+  err.statusCode = 500;
+  throw err;
 };
 
 const userCheck = async (mobile_number) => {
@@ -15,8 +15,9 @@ const userCheck = async (mobile_number) => {
 }
 
 const createUser = async (name, birthday, height, mobile_number) => {
-    try{
-        return await pool.query(`    
+  try {
+    return await pool.query(
+      `    
             INSERT INTO users (
                 name,
                 birthday,
@@ -25,12 +26,18 @@ const createUser = async (name, birthday, height, mobile_number) => {
             ) VALUES (?, ?, ?, ?);`,
             [name, birthday, height, mobile_number]);
     } catch (err) {
-        errorHandler();
+      errorHandler();
     }
 };
 
-module.exports = {
-    createUser,
-    userCheck
-}
+const getMemberList = async() => {
+    return await pool.query(
+        `SELECT * FROM users`
+    )
+};
 
+module.exports = {
+  createUser,
+  userCheck,
+  getMemberList
+};

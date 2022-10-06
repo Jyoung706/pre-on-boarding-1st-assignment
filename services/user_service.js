@@ -38,7 +38,15 @@ const signUp = async (name, birthday, height, mobile_number) => {
     return;
 };
 
+
+const getMemberList = async() => {
+    const [ member ] = await userDao.getMemberList();
+    return member;
+};
+
+
 module.exports = {
     signUp,
-    checkVaildate
+    checkVaildate,
+    getMemberList
 };

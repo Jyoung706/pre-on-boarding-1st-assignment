@@ -1,13 +1,12 @@
-const userService = require("../services/user_service")
+const userService = require("../services/user_service");
 
-const errorhandler = (err,res) => {
-    return res.status(err.statusCode || 500).json({ message : err.message });
+const errorhandler = (err, res) => {
+  return res.status(err.statusCode || 500).json({ message: err.message });
 };
 
 const signUp = async (req, res) => {
-    try {
-        
-        const { name, birthday, height, mobile_number } = req.body;
+  try {
+    const { name, birthday, height, mobile_number } = req.body;
 
         if (!name || !birthday || !height || !mobile_number ) {
             return res.status(404).json({ message : "KEY_ERROR" });
@@ -20,8 +19,16 @@ const signUp = async (req, res) => {
     } catch (err) {
         errorhandler(err, res);
     }
+  
+  }
+
+
+const getMemberList = async (_, res) => {
+    const member = await userService.getMemberList();
+    res.status(201).json({ member });
 };
 
 module.exports = {
-	signUp
-}
+  signUp,
+  getMemberList
+};
