@@ -1,21 +1,6 @@
 const userDao = require("../models/user_dao")
 
-const signUp = async (name, birthday, height, mobile_number) => {
-    
-    const userCheck = await userDao.userCheck(name, birthday, height, mobile_number);
-    
-    if(!userCheck){
-        const err = new Error('EXIST_USER')
-        err.statusCode = 409 
-        throw err
-    };
-
-    const validateMobileNumber = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
-    if(!validateMobileNumber.test(mobile_number)) {
-        const err = new Error('INVALID_MOBILE_NUMBER')
-        err.statusCode = 409
-        throw err
-    } 
+const checkVaildate = async (name, birthday, height, mobile_number) => {
     
     const validateName = /^[가-힣]{2,4}$/;
     if(!validateName.test(name)) {
@@ -30,10 +15,30 @@ const signUp = async (name, birthday, height, mobile_number) => {
         err.statusCode = 409
         throw err
     }
-  
-    return await userDao.createUser(name, birthday, height, mobile_number)
+
+    const validateMobileNumber = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
+    if(!validateMobileNumber.test(mobile_number)) {
+        const err = new Error('INVALID_MOBILE_NUMBER')
+        err.statusCode = 409
+        throw err
+    } 
+
+};
+
+const signUp = async (name, birthday, height, mobile_number) => {
+    const user = await userDao.userCheck(mobile_number)
+    console.log(user);
+    if(user) { 
+        const err = new Error('EXIST USER')
+        err.statusCode = 409
+        throw err
+    }
+    await userDao.createUser(name, birthday, height, mobile_number)
+
+    return;
 };
 
 module.exports = {
-    signUp
+    signUp,
+    checkVaildate
 };

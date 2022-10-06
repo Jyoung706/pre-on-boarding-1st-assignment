@@ -14,7 +14,9 @@ const signUp = async (req, res) => {
         }
 
         await userService.signUp(name, birthday, height, mobile_number);
+        await userService.checkVaildate(name, birthday, height, mobile_number);
         return res.status(201).json({ message : "USER_CREATED" });
+    
     } catch (err) {
         errorhandler(err, res);
     }

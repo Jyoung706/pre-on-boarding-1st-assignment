@@ -6,17 +6,13 @@ const errorHandler = () => {
     throw err;
 };
 
-const userCheck = async (name, birthday, height, mobile_number) => {
-    try {
-        return await pool.query(`
-        SELECT EXISTS
-        (SELECT mobile_number FROM users
-        WHERE mobile_number = "${mobile_number}");
-        `)
-    } catch (err) {
-        errorHandler();
-    }
-};
+const userCheck = async (mobile_number) => {
+    const [[user]] = await pool.query(` 
+    SELECT * FROM users WHERE mobile_number = ?;`
+    , [mobile_number])
+    return user; 
+  
+}
 
 const createUser = async (name, birthday, height, mobile_number) => {
     try{
@@ -27,8 +23,7 @@ const createUser = async (name, birthday, height, mobile_number) => {
                 height,
                 mobile_number
             ) VALUES (?, ?, ?, ?);`,
-            [name, birthday, height, mobile_number]  
-        );
+            [name, birthday, height, mobile_number]);
     } catch (err) {
         errorHandler();
     }
