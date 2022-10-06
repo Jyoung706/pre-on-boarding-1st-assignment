@@ -28,7 +28,21 @@ const getMemberList = async (_, res) => {
     res.status(201).json({ member });
 };
 
+const deleteUser = async (req, res) => {
+    try {
+        const { id } = req.body;
+        if (!id) {
+            return res.status(404).json({ message : "KEY_ERROR" });
+        }
+        await userService.deleteUser(id);   
+        return res.status(200).json({ message : "DELETE_USER" });
+    } catch (err) {
+        errorhandler(err, res);
+    }
+};
+
 module.exports = {
-  signUp,
-  getMemberList
+	signUp,
+    deleteUser,
+    getMemberList
 };

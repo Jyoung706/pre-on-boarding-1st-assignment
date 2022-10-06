@@ -30,6 +30,15 @@ const createUser = async (name, birthday, height, mobile_number) => {
     }
 };
 
+const deleteUser = async (id) => {
+    const [selectUser] = await pool.query(`
+    UPDATE users SET is_active = 0 WHERE id = ?;`,
+    [id]);
+    return selectUser;
+   
+} 
+
+
 const getMemberList = async() => {
     return await pool.query(
         `SELECT * FROM users`
@@ -39,5 +48,6 @@ const getMemberList = async() => {
 module.exports = {
   createUser,
   userCheck,
-  getMemberList
+  getMemberList,
+  deleteUser,
 };
