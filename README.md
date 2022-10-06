@@ -27,6 +27,9 @@ MYSQL_USERNAME = 사용자명
 MYSQL_PASSWORD = 비밀번호
 MYSQL_DATABASE = 데이터베이스명
 
+# 데이터베이스 테이블 생성
+$ npx dbmate up
+
 # 프로젝트 실행
 $ node server.js
 
