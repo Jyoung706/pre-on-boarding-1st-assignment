@@ -61,6 +61,17 @@ $ node server.js
     - 특정 회원 정보 가져오기
     
     - 특정 회원 정보 수정하기
+
+      **필수 값들을 요청보내면 특정 회원에 대한 정보를 해당 값들로 수정합니다.**
+
+          1. 존재하지 않는 유저에 대한 요청이면 에러가 발생합니다.
+          
+          2. 비식별화된 유저에 대한 요청이면 에러가 발생합니다.
+          
+          3. 필수 값들이 모두 존재하지 않으면 에러가 발생합니다.
+
+          4. 값들이 유효성 검사 조건에 맞지 않으면 에러가 발생합니다.
+        
     
     - 특정 회원 삭제하기
         - 회원 정보는 실제로 삭제하지 않고, 비식별화 처리합니다.
@@ -70,6 +81,15 @@ $ node server.js
     - 특정 회원의 측정 기록들(목록) 가져오기
     
     - 특정 측정 기록 및 측정 데이터 가져오기
+      
+      **측정 기록을 조회하면 해당 기록의 데이터와 유저 정보를 함께 불러옵니다.**
+		
+	      1. 요청하는 기록이 존재하지 않을 경우 에러가 발생합니다. 
+          
+          2 . 요청하는 기록이 비식별화된 유저의 기록일 경우 에러가 발생합니다.
+        
+
+
     
     - 특정 회원에 대한 측정 기록과 측정 데이터 생성
     
@@ -102,4 +122,23 @@ $ node server.js
 ****        
        요청과 응답에 대한 자세한 결과, 데이터 타입은 API docs를 참고해 주십시오.
 
-## 기타 소개하고 싶은 내용들
+## API doc
+김윤희 - [https://documenter.getpostman.com/view/22727251/2s83zfQ5Ti](https://documenter.getpostman.com/view/22727251/2s83zfQ5Ti)
+
+- 특정 회원의 측정 기록(목록들) 가져오기
+- 특정 회원의 정보 가져오기
+
+박정용 - [https://documenter.getpostman.com/view/22204904/2s83zfQR1z](https://documenter.getpostman.com/view/22204904/2s83zfQR1z)
+
+- 회원 등록
+- 특정 회원 삭제하기
+
+음정민 - [https://documenter.getpostman.com/view/22263423/2s83zfQQQf](https://documenter.getpostman.com/view/22263423/2s83zfQQQf)
+
+- 특정 회원 정보 수정하기
+- 특정 측정 기록 및 측정 데이터 가져오기
+
+전준영 - [https://documenter.getpostman.com/view/22723440/2s83zdxS6U](https://documenter.getpostman.com/view/22723440/2s83zdxS6U)
+
+- 특정 회원에 대한 측정 기록과 측정 데이터 생성
+- 특정 회원의 측정기록 삭제
