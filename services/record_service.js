@@ -1,5 +1,6 @@
 const recordDao = require("../models/record_dao")
 const ErrorCreator = require("../middlewares/error_creator");
+const userDao = require("../models/user_dao");
 
 const getRecordWithData = async (recordId) => {
     const isExists = await recordDao.checkExistRecord(recordId);
@@ -38,8 +39,27 @@ const recordDataService = async (id, weight, typeData, conn) => {
     await recordDao.deleteRecord(id, conn);
 };
 
+const selectRecordByUser = async (user_id) => {
+    const result = await userDao.isExistUser(user_id);
+    if(!result){
+        const error = new Error({ message: "USER_THAT_DO_NOT_EXIST"}.message);
+        error.statusCode = 400;
+        throw error;
+    }
+    
+    try{
+        const recordList = await recordDao.getRecordByUser(user_id);
+        recordList[0].records  = JSON.parse(recordList[0].records)
+        return recordList
+    }catch(err){
+        console.log(err);
+    }
+    
+}
+
 module.exports = { 
     recordDataService, 
     recordDeleteService,
-    getRecordWithData
+    getRecordWithData,
+    selectRecordByUser
 };

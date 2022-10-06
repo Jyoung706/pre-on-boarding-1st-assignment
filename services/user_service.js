@@ -49,10 +49,25 @@ const deleteUser = async (id) => {
     return selectUser;
     }
 
+const selectDetailUser = async (user_id) => {
+    const result = await userDao.isExistUser(user_id);
+    if(!result){
+        const error = new Error({ message: "USER_THAT_DO_NOT_EXIST"}.message);
+        error.statusCode = 400;
+        throw error;
+    }
+    
+    try{
+        return await userDao.getUser(user_id);
+    }catch(err){
+        console.log(err);
+    }
+}
+
 module.exports = {
     signUp,
     checkVaildate,
     getMemberList,
-    deleteUser
-    
+    deleteUser,
+    selectDetailUser
 };

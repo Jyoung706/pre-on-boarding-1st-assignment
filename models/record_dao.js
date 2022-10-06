@@ -102,6 +102,40 @@ const deleteRecord = async (id, conn) => {
     );
 };
 
+const getRecordByUser = async (user_id)=>{
+    // 탈퇴 회원은 제외
+    try{
+        const [user] = await pool.query(`
+        SELECT u.id AS user_id
+        , ANY_VALUE(u.name) AS name
+        , CONCAT (
+        '[',
+            GROUP_CONCAT(
+                    JSON_OBJECT(
+                    'record_id', r.id , 
+                    'weight', r.weight,
+                    'record_at' , DATE_FORMAT(r.created_at , '%Y-%m-%d'),
+                    'type' , rt.type,
+                    'data' , rd.data
+                    )ORDER BY r.created_at DESC),
+                ']'
+            ) as records
+        FROM users u 
+        LEFT JOIN records r ON r.user_id = u.id  
+        LEFT JOIN record_data rd ON rd.record_id = r.id 
+        LEFT JOIN record_types rt  ON rt.id = rd.record_type_id 
+        WHERE u.id = ?
+        AND u.is_active = 1
+        GROUP BY u.id
+        ;`, [user_id])
+        
+        return user
+    }catch(err){
+        console.log(err)
+    }
+    
+}
+
 module.exports = {
     createRecord,
     getRecordIdByUserId,
@@ -110,5 +144,6 @@ module.exports = {
     deleteRecord,
     getRecordWithData,
     checkActiveRecord,
-    checkExistRecord
+    checkExistRecord,
+    getRecordByUser
 };
