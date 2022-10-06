@@ -45,9 +45,36 @@ const getMemberList = async() => {
     )
 };
 
+const isExistUser = async (user_id)=>{
+  const [user] = await pool.query(`
+  SELECT u.id 
+  FROM users u 
+  WHERE u.id = ?
+  ;`, [user_id])
+  
+  return user
+}
+
+const getUser = async (user_id)=>{
+  const [user] = await pool.query(`
+  SELECT u.id 
+, u.name 
+, u.birthday 
+, u.height 
+, u.mobile_number 
+, (SELECT COUNT(*) FROM records r WHERE r.user_id = ?) AS number_of_measurements 
+  FROM users u 
+  WHERE u.id = ?
+  ;`, [user_id, user_id])
+  
+  return user
+}
+
 module.exports = {
   createUser,
   userCheck,
   getMemberList,
   deleteUser,
+  isExistUser,
+  getUser
 };
