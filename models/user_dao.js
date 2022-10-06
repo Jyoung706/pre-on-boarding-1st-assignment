@@ -30,14 +30,51 @@ const createUser = async (name, birthday, height, mobile_number) => {
     }
 };
 
+const deleteUser = async (id) => {
+    const [selectUser] = await pool.query(`
+    UPDATE users SET is_active = 0 WHERE id = ?;`,
+    [id]);
+    return selectUser;
+   
+} 
+
+
 const getMemberList = async() => {
     return await pool.query(
         `SELECT * FROM users`
     )
 };
 
+const isExistUser = async (user_id)=>{
+  const [user] = await pool.query(`
+  SELECT u.id 
+  FROM users u 
+  WHERE u.id = ?
+  ;`, [user_id])
+  
+  return user
+}
+
+const getUser = async (user_id)=>{
+  const [user] = await pool.query(`
+  SELECT u.id 
+, u.name 
+, u.birthday 
+, u.height 
+, u.mobile_number 
+, (SELECT COUNT(*) FROM records r WHERE r.user_id = ?) AS number_of_measurements 
+  FROM users u 
+  WHERE u.id = ?
+  ;`, [user_id, user_id])
+  
+  return user
+}
+
 module.exports = {
   createUser,
   userCheck,
-  getMemberList
+  getMemberList,
+  deleteUser,
+  isExistUser,
+  getUser
 };

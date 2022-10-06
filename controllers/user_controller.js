@@ -28,7 +28,38 @@ const getMemberList = async (_, res) => {
     res.status(201).json({ member });
 };
 
+const deleteUser = async (req, res) => {
+    try {
+        const { id } = req.body;
+        if (!id) {
+            return res.status(404).json({ message : "KEY_ERROR" });
+        }
+        await userService.deleteUser(id);   
+        return res.status(200).json({ message : "DELETE_USER" });
+    } catch (err) {
+        errorhandler(err, res);
+    }
+};
+
+const selectDetailUser = async (req, res) => {
+    const { user_id } = req.params;
+    if(isNaN(user_id)) {
+        return res.status(400).json({ message: 'user_id 이/가 없습니다.' });
+    }
+    
+    try{
+        const result = await userService.selectDetailUser(user_id);
+        res.status(200).json({user : result , message: "SUCCESS_GET_USER" })
+    }catch(err){
+        console.log(err);
+        res.status(err.statusCode || 500).json({ message: err.message });
+    }
+    
+}
+
 module.exports = {
-  signUp,
-  getMemberList
+	signUp,
+    deleteUser,
+    getMemberList,
+    selectDetailUser
 };
