@@ -7,7 +7,7 @@
 
 - 사전에 node와 mysql이 설치되어있어야 합니다.
 
-```
+```shell
 # 레포지토리 클론
 $ git clone 
 
