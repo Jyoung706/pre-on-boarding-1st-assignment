@@ -37,19 +37,12 @@ const deleteUser = async (user_id, is_active) => {
 
 }
 
-
 const verifiedUser= async(user_id, is_active) => {
     return await pool.query(`
     SELECT * FROM users WHERE id = ${user_id}
     ;`,[user_id, is_active]);
 }
 
-module.exports = {
-    createUser,
-    userCheck,
-    deleteUser,
-    verifiedUser
-}
 const getMemberList = async() => {
     return await pool.query(
         `SELECT * FROM users`
@@ -59,5 +52,7 @@ const getMemberList = async() => {
 module.exports = {
   createUser,
   userCheck,
-  getMemberList
+  getMemberList,
+  deleteUser,
+  verifiedUser
 };

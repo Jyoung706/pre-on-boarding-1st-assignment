@@ -42,8 +42,7 @@ const deleteUser = async(user_id , is_active) => {
     
     const verifiedUser = await userDao.verifiedUser(user_id , is_active);
     
-    
-    if(!verifiedUser){
+    if(verifiedUser){
         const err = new Error('NOT_EXIST_USER')
         err.statusCode = 409 
         throw err
@@ -59,5 +58,6 @@ const getMemberList = async() => {
 module.exports = {
     signUp,
     checkVaildate,
-    getMemberList
+    getMemberList,
+    deleteUser
 };
