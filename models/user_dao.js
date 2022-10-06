@@ -70,11 +70,38 @@ const getUser = async (user_id)=>{
   return user
 }
 
+const checkActiveUser = async (userId) => {
+  const [[isActive]] = await pool.query(
+    `
+        SELECT users.is_active 
+        FROM users
+        WHERE users.id=?;`,
+    [userId]
+  );
+  return isActive.is_active;
+};
+
+const editUserProfile = async (userId, name, birthday, height, mobileNumber) => {
+  return await pool.query(
+    `
+    UPDATE users 
+    SET 
+      name = ?,
+      birthday = ?,
+      height = ?,
+      mobile_number = ?
+    WHERE id = ?
+    ;`, [name, birthday, height, mobileNumber, userId]
+  );
+};
+
 module.exports = {
   createUser,
   userCheck,
   getMemberList,
   deleteUser,
   isExistUser,
-  getUser
+  getUser,
+  editUserProfile,
+  checkActiveUser
 };

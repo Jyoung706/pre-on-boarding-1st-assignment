@@ -1,4 +1,5 @@
 const userDao = require("../models/user_dao")
+const ErrorCreator = require("../middlewares/error_creator");
 
 const checkVaildate = async (name, birthday, height, mobile_number) => {
     
@@ -13,6 +14,13 @@ const checkVaildate = async (name, birthday, height, mobile_number) => {
     if(!validateBirthDay.test(birthday)) {
         const err = new Error('INVALID_BIRTHDAY')
         err.statusCode = 409
+        throw err
+    }
+
+    const validateHeight = /[0-9]/;
+    if(!validateHeight.test(height)){
+        const err = new Error('INVALID_HEIGHT')
+        err.statusCode = 400
         throw err
     }
 
@@ -64,10 +72,30 @@ const selectDetailUser = async (user_id) => {
     }
 }
 
+const editUserProfile = async (userId, name, birthday, height, mobileNumber) => {
+    const isExist = await userDao.isExistUser(userId);
+    if(!isExist.length){
+        throw new ErrorCreator("USER_NOT_EXISTS", 404);
+    }
+    const isActive = await userDao.checkActiveUser(userId);
+    if (!isActive) {
+        throw new ErrorCreator("INVALID_USER", 404);
+    }
+
+    if (!name || !birthday || !height || !mobileNumber ) {
+        throw new ErrorCreator("KEY_ERROR", 400);
+    }
+
+    await checkVaildate(name, birthday, height, mobileNumber);
+
+    return await userDao.editUserProfile(userId, name, birthday, height, mobileNumber);
+};
+
 module.exports = {
     signUp,
     checkVaildate,
     getMemberList,
     deleteUser,
-    selectDetailUser
+    selectDetailUser,
+    editUserProfile
 };
