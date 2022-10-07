@@ -57,6 +57,7 @@ $ node server.js
     - 회원 정보 등록하기
     
     - 회원 목록 가져오기
+    	- 유저 전체 리스트를 GET 방식으로 조회 해옵니다.
     
     - 특정 회원 정보 가져오기
         - user_id 값을 Path Variable로 받아서 요청 들어온 회원의 정보를 가져옵니다.
@@ -142,4 +143,7 @@ $ node server.js
 전준영 - [https://documenter.getpostman.com/view/22723440/2s83zdxS6U](https://documenter.getpostman.com/view/22723440/2s83zdxS6U)
 
 - 특정 회원에 대한 측정 기록과 측정 데이터 생성
-- 특정 회원의 측정기록 삭제
+
+오인환 - [https://documenter.getpostman.com/view/23509106/2s83zfRRK2](https://documenter.getpostman.com/view/23509106/2s83zfRRK2)
+
+- 회원 목록 가져오기
