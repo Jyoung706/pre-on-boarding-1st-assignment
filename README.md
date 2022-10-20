@@ -143,6 +143,7 @@ $ node server.js
 전준영 - [https://documenter.getpostman.com/view/22723440/2s83zdxS6U](https://documenter.getpostman.com/view/22723440/2s83zdxS6U)
 
 - 특정 회원에 대한 측정 기록과 측정 데이터 생성
+- 측정기록 
 
 오인환 - [https://documenter.getpostman.com/view/23509106/2s83zfRRK2](https://documenter.getpostman.com/view/23509106/2s83zfRRK2)
 
